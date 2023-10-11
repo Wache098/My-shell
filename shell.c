@@ -5,7 +5,7 @@
 
 int main() {
     char *username = "jay"; 
-    char *hostname = "localman";
+    char *hostname = "localhost";
     char cwd[1024];
 
     while (1) {
