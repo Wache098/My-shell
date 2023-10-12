@@ -6,7 +6,8 @@ int main( int argc, char **argv) {
     char cwd[1024];
     char *lineptr;
     // const size_t bufsize = 1024;
-    size_t n = 0; 
+    size_t n = 0;
+    ssize_t nchars_read; 
 
     /* declaring void variables */
     (void)argc;
@@ -25,6 +26,10 @@ int main( int argc, char **argv) {
            else{
             // getcwd(cwd, sizeof(cwd));
             printf("%s@%s:%s ", username, hostname, cwd);
+            nchars_read = getline(&lineptr, &n, stdin);
+            if(nchars_read == -1 ){
+                printf()
+            }
             fflush(stdout);
            }
         }
