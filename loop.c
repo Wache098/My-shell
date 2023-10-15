@@ -19,6 +19,13 @@ void loop(void){
         for(size_t i = 0; commands[i] != NULL; i++ ){
             char **args = parse_line(commands[i]);
 
+            /*Variable replacement in each arg*/
+            for(size_t j = 0; args[i] != NULL; j++ ){
+                char *new_arg = replace_vars(args[j], last_status);
+                free(args[j]);
+                args[j] = new_arg;
+            }
+
             /*Handling of alias built-in commands*/
             if(strcmp(args[0], "alias") == 0){
                 if(!args[1]){
@@ -53,7 +60,8 @@ void loop(void){
                 }
             }
             }
-            status = execute_command(args);
+            /*status = execute_command(args);*/
+            last_status = execute_command(args);
             free(args);
             free(commands[i]);
         }
