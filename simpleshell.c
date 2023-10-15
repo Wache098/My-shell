@@ -13,7 +13,9 @@ int main(void)
     char input[MAX_INPUT_SIZE];
     int should_run = 1;
     int len;
+
     char **args;
+    char *line;
 
     /**
      * char *line;
@@ -30,6 +32,9 @@ int main(void)
         }
 
         len = 0;
+
+        /*Execute the function*/
+        /*line = get_line();*/ 
 
         while (input[len] != '\n' && len < MAX_INPUT_SIZE)
         {
@@ -78,6 +83,7 @@ int main(void)
     */
 
     free(args);
+    free(line);
     return (0);
 }
 
