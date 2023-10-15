@@ -13,6 +13,7 @@ int main(void)
     char input[MAX_INPUT_SIZE];
     int should_run = 1;
     int len;
+    char **args;
 
     /**
      * char *line;
@@ -75,6 +76,8 @@ int main(void)
      * free(line);
      * free(args);
     */
+
+    free(args);
     return (0);
 }
 

@@ -4,6 +4,14 @@ int execute_command(char *command){
 
     pid_t pid;
     int status;
+    char *executable_path;
+    char **args = NULL, **envp=NULL;
+
+    executable_path = find_executable(args[0]);
+    if (executable_path == NULL) {
+        fprintf(stderr, "simple_shell: %s: command not found\n", args[0]);
+        return 1;
+    }
 
     char * argv[] = {"/bin/ls", "-l", NULL};
 

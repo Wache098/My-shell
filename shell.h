@@ -15,6 +15,7 @@
 char* read_line(void);
 char **parse_line(char *line);
 int execute_command(char **args);
+char *find_executable(char *cmd);
 extern char **environ;
 
 #endif /*SHELL_H*/
