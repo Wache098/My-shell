@@ -1,11 +1,5 @@
 #include "shell.h"
-#include <unistd.h>
-#include <sys/types.h>
-#include <sys/wait.h>
-#include <stdio.h>
-#include <string.h>
 
-#define MAX_INPUT_SIZE 1024
 
 /**
  * main - Simple shell program
