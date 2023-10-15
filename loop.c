@@ -6,6 +6,7 @@ void loop(void){
     char **commands;
     int status = 1;
     int last_status = 1;
+    Alias *alias_list = NULL;
 
     while(status){
         printf("$ ");
@@ -18,7 +19,22 @@ void loop(void){
         for(size_t i = 0; commands[i] != NULL; i++ ){
             char **args = parse_line(commands[i]);
 
-            /*&& and || operators*/
+            /*Handling of alias built-in commands*/
+            if(strcmp(args[0], "alias") == 0){
+                if(!args[1]){
+                    printf_alias(alias_list, NULL);
+                }else{
+                    char *name = strtok(args[1], "=");
+                    char *value = strtok(NULL, "=");
+                    if(value){
+                        add_to_aliases(alias_list, name, value);
+                    }else{
+                        print_alias(alias_list, name);
+                    }
+                }
+                last_status = 0;
+            }else{
+                 /*&& and || operators*/
             if(strcmp(args[0], "&&") == 0){
                 if(last_status == 0){
                     free(args);
@@ -36,6 +52,7 @@ void loop(void){
                     break;
                 }
             }
+            }
             status = execute_command(args);
             free(args);
             free(commands[i]);
@@ -44,4 +61,5 @@ void loop(void){
         free(line);
         free(commands);
     }
+    free_aliases(alias_list);
 }
