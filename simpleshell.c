@@ -16,6 +16,8 @@ int main(void)
 
     char **args;
     char *line;
+    char **commands;
+    int last_status = 1;
 
     /**
      * char *line;
@@ -35,6 +37,33 @@ int main(void)
 
         /*Execute the function*/
         /*line = get_line();*/ 
+
+        for(size_t i = 0; commands[i] != NULL; i++){
+            char **args = parseLine(commands[i]);
+
+            if(strcmp(args[0], "&&") == 0){
+                if(last_status == 0){
+                    free(args);
+                    continue;
+                }else{
+                    free(args);
+                    break;
+                }
+            }else if(strcmp(args[0], "||") == 0){
+                    if(last_status != 0){
+                        free(args);
+                        continue;
+                    }else {
+                        free(args);
+                        break;
+                    }
+                }
+                last_status = execute_command(args);
+                free(args);
+                free(commands[i]);
+            }
+
+
 
         while (input[len] != '\n' && len < MAX_INPUT_SIZE)
         {
