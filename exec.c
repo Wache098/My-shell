@@ -6,6 +6,7 @@ int execute_command(char **args){
     int status;
     char *executable_path;
     char **args = NULL, **envp=NULL;
+    static char *last_dir = NULL;
     /*  char * argv[] = {"/bin/ls", "-l", NULL};*/
 
     /*Check for the exit Command*/
@@ -28,6 +29,35 @@ int execute_command(char **args){
         return 1;
     }
 
+    /*Check for the "cd" command*/
+    if(strcmp(args[0], "cd") == 0){
+        char *dir = args[1];
+        char *home = getenv("HOME");
+        char cwd[1024];
+
+        if(!dir || (dir && strcmp(dir, "~")) == 0){
+            dir = home;
+        }else if(dir && strcmp(dir, "-") == 0){
+            if(last_dir){
+                /*free(cwd);*/
+                dir = last_dir;
+            }else{
+                fprintf(stderr, "simple_shell: cd: OLDPWD not set\n");
+                return 1;
+            }
+        }
+        if(chdir(dir) != 0){
+            perror("ERROR");
+            return 1;
+        }
+        free(last_dir);
+        getcwd(cwd, sizeof(cwd));
+        /*last_dir = malloc(sizeof(char)*strlen(cwd)+1);*/
+        last_dir = strdup(cwd);
+        setenv("PWD", cwd, 1);
+        return 1;
+    }
+
     /*Check for the "setenv" command*/
 
     if(strcmp(args[0], "setenv") == 0){
@@ -46,7 +76,7 @@ int execute_command(char **args){
 
     if(strcmp(args[0], "unsetenv") == 0){
         if(args[1]){
-            if(unsetenva(args[1]) != 0){
+            if(unsetenv(args[1]) != 0){
                 fprintf(stderr, "simple_shell: unsetenv: failure\n");
             }
             return 1;
