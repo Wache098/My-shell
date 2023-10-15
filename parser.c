@@ -7,6 +7,7 @@ char **parse_line(char *line){
     char *token;
 
     if(!token){
+        /*  fprintf(stderr, "simple_shell: allocation error\n");*/
         perror("ERROR");
         /*return(NULL);*/
         exit(EXIT_FAILURE);
