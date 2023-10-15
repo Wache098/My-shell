@@ -14,6 +14,7 @@
 /*void loop(void);*/
 char* read_line(void);
 char **parse_line(char *line);
+char *get_line(void);
 int execute_command(char **args);
 char *find_executable(char *cmd);
 extern char **environ;
