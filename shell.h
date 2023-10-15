@@ -10,8 +10,11 @@
 #include <sys/wait.h>
 
 #define MAX_INPUT_SIZE 1024
+
+/*void loop(void);*/
 char* read_line(void);
-int execute_command(char *command);
+char **parse_line(char *line);
+int execute_command(char **args);
 extern char **environ;
 
-#endif /*MAIN_H*/
+#endif /*SHELL_H*/

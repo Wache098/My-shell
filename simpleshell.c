@@ -6,6 +6,8 @@
  *
  * Return: 0 when successful, -1 on error.
  */
+
+/*void loop(void);*/
 int main(void)
 {
     char input[MAX_INPUT_SIZE];
