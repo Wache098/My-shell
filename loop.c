@@ -5,7 +5,7 @@ void loop(void){
     int status = 1;
 
     while(status){
-        write(STDOUT_FILENO, "#cisfun$ ", 9);
+        printf("$ ");
 
         line = read_line();
         status = execute_command(line);
