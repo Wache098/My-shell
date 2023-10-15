@@ -14,6 +14,11 @@ int main(void)
     int should_run = 1;
     int len;
 
+    /**
+     * char *line;
+     * char **args;
+    */
+
     while (should_run)
     {
         write(STDOUT_FILENO, "#cisfun$ ", 9);
@@ -65,6 +70,11 @@ int main(void)
             write(STDERR_FILENO, error_message, strlen(error_message));
         }
     }
+
+    /**
+     * free(line);
+     * free(args);
+    */
     return (0);
 }
 
