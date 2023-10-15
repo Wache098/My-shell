@@ -5,6 +5,7 @@ char **parse_line(char *line){
     int bufsize = 64, position = 0;
     char **tokens = malloc(bufsize * sizeof(char*));
     char *token;
+    token = 0;
 
     if(!token){
         /*  fprintf(stderr, "simple_shell: allocation error\n");*/
@@ -14,7 +15,7 @@ char **parse_line(char *line){
     }
 
     token = strtok(line, "\t\r\n\a");
-    while( token != NULL){
+    while(token != NULL){
         tokens[position] = token;
         position++;
 

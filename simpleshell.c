@@ -1,6 +1,5 @@
 #include "shell.h"
 
-
 /**
  * main - Simple shell program
  *
@@ -12,12 +11,14 @@ int main(void)
 {
     char input[MAX_INPUT_SIZE];
     int should_run = 1;
-    int len;
+    int len = 0;
 
-    char **args;
-    char *line;
-    char **commands;
+    char **args = NULL;
+    char *line = NULL;
+    char **commands = NULL;
     int last_status = 1;
+    size_t i = 0;
+    Alias *alias_list = NULL;
 
     /**
      * char *line;
@@ -33,15 +34,29 @@ int main(void)
             break;
         }
 
-        len = 0;
-
         /*Execute the function*/
         /*line = get_line();*/ 
 
-        for(size_t i = 0; commands[i] != NULL; i++){
-            char **args = parseLine(commands[i]);
+        for(i = 0; commands[i] != NULL; i++){
+            char **args = parse_line(commands[i]);
 
-            if(strcmp(args[0], "&&") == 0){
+            /*Handle the Alias built in COmmands*/
+            if(strcmp(args[0], "alias") == 0){
+                if(!args[1]){
+                    print_alias(alias_list, NULL);
+                }else{
+                    char *name = strtok(args[1], "=");
+                    char *value = strtok(NULL, "=");
+
+                    if(value){
+                        add_alias(&alias_list, name,value);
+                    }else{
+                        print_alias(alias_list, name);
+                    }
+                }
+                last_status = 0; /*Assuminng alias command will always succeed*/
+            }else{
+                if(strcmp(args[0], "&&") == 0){
                 if(last_status == 0){
                     free(args);
                     continue;
@@ -62,8 +77,6 @@ int main(void)
                 free(args);
                 free(commands[i]);
             }
-
-
 
         while (input[len] != '\n' && len < MAX_INPUT_SIZE)
         {
@@ -105,7 +118,6 @@ int main(void)
             write(STDERR_FILENO, error_message, strlen(error_message));
         }
     }
-
     /**
      * free(line);
      * free(args);
@@ -114,5 +126,6 @@ int main(void)
     free(args);
     free(line);
     return (0);
+    }
+    free_aliases(alias_list);
 }
-

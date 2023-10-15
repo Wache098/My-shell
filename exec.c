@@ -3,9 +3,9 @@
 int execute_command(char **args){
 
     pid_t pid;
-    int status;
+    /*int status;*/
     char *executable_path;
-    char **args = NULL, **envp=NULL;
+    /*char **args = NULL, **envp=NULL;*/
     static char *last_dir = NULL;
     /*  char * argv[] = {"/bin/ls", "-l", NULL};*/
 

@@ -9,6 +9,10 @@ char *get_line(void){
     char *line = NULL;
     size_t len = 0;
 
+    char *newline = memchr(ptr, '\n', chars_left);
+
+    
+
     while(1){
         if(chars_left <= 0 ) {
             chars_left = read(STDIN_FILENO, buffer, sizeof(buffer));
@@ -28,10 +32,9 @@ char *get_line(void){
         exit(EXIT_FAILURE);
     }
 
-    char *newline = memchr(ptr, '\n', chars_left);
     if(newline){
         size_t line_len = newline -ptr;
-        strncpy( line + len - chars_left, ptr, line_len);
+        strncpy(line + len - chars_left, ptr, line_len);
         line[len - chars_left + line_len] = '\0';
         ptr = newline + 1;
         chars_left -= line_len + 1;
