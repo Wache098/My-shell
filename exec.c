@@ -2,8 +2,8 @@
 
 int execute_command(char **args){
 
-    pid_t pid;
-    /*int status;*/
+    pid_t pid, wpid;
+    int status;
     char *executable_path;
     /*char **args = NULL, **envp=NULL;*/
     static char *last_dir = NULL;
@@ -96,7 +96,7 @@ int execute_command(char **args){
 
     /*Handle Error*/
     if(pid == -1 ){
-         perror("simple_shell");
+         perror("ERROR");
         return 1;
     }
         
@@ -107,10 +107,10 @@ int execute_command(char **args){
         }
         exit(EXIT_FAILURE);
     }else { /*Parent Process*/
-        wait(NULL);
-        printf("Done with execve\n");
+        do{
+            wpid = waitpid(pid, &status, WUNTRACED);
+        }while(!WIFEXITED(status) && !WIFSIGNALED(status));
     }
-
-    return 0;
+    free(executable_path);
+    return 1;
 }
-
