@@ -13,6 +13,16 @@ int execute_command(char *command){
         exit(EXIT_SUCCESS);
     }
 
+    /*Check for the "env" command*/
+    if(strcmp(args[0], "env") == 0){
+        char **env = environ;
+        while(*env != NULL){
+            printf("%s\n", *env);
+            env++;
+        }
+        return 1;
+    }
+
     executable_path = find_executable(args[0]);
     if (executable_path == NULL) {
         fprintf(stderr, "simple_shell: %s: command not found\n", args[0]);
