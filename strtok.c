@@ -4,8 +4,8 @@
 char **parse_line(char *line){
     int bufsize = 64, position = 0;
     char **tokens = malloc(bufsize * sizeof(char*));
-    char *token, *saveptr;
-    token = 0;
+    char *token;
+    char *comment_pos;
 
     if(!tokens){
         /*  fprintf(stderr, "simple_shell: allocation error\n");*/
@@ -15,9 +15,9 @@ char **parse_line(char *line){
     }
 
     /*Handling of commentss*/
-    char *comment_pos = strchr(line, "#");
+    comment_pos = strchr(line, '#');
     if(comment_pos){
-        *comment_pos = "\0";
+        *comment_pos = '\0';
 
     }
     
@@ -30,6 +30,7 @@ char **parse_line(char *line){
             bufsize += 64; 
             tokens = realloc(tokens, bufsize * sizeof(char*));
             if(!tokens){
+                /*fprintf(stderr, "simple_shell: allocation error\n");*/
                 perror("ERROR");
                 exit(EXIT_FAILURE);
                 /*return (NULL);*/
