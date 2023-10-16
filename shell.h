@@ -22,9 +22,11 @@ typedef struct Alias
 } Alias;
 
 
-/*void loop(void);*/
+void loop(void);
+void loop_file(FILE *fp);
 char* read_line(void);
 char **parse_line(char *line);
+char **parse_commands(char *line);
 char *get_line(void);
 int execute_command(char **args);
 char *find_executable(char *cmd);
