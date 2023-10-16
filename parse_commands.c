@@ -5,14 +5,15 @@ char **parse_commands(char *line) {
     char **commands = malloc(bufsize * sizeof(char*));
     char *command_start = line;
     size_t len = strlen(line);
-    int in_command = 1;
+    /*int in_command = 1;*/
+    size_t i;
 
     if (!commands) {
         fprintf(stderr, "simple_shell: allocation error\n");
         exit(EXIT_FAILURE);
     }
 
-    for (size_t i = 0; i < len; i++) {
+    for (i = 0; i < len; i++) {
         char c = line[i];
 
         if (c == ';' || i == len-1) {
