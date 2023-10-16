@@ -2,7 +2,7 @@
 
 char *replace_vars(char *arg, int last_status){
     char *var;
-    char *val;
+    /*char *val;*/
     char *new_arg;
 
     if((var =strstr(arg, "$?")) != NULL){

@@ -2,7 +2,7 @@
 
 int execute_command(char **args){
 
-    pid_t pid, wpid;
+    pid_t pid;
     int status;
     char *executable_path;
     /*char **args = NULL, **envp=NULL;*/
@@ -108,7 +108,7 @@ int execute_command(char **args){
         exit(EXIT_FAILURE);
     }else { /*Parent Process*/
         do{
-            wpid = waitpid(pid, &status, WUNTRACED);
+            waitpid(pid, &status, WUNTRACED);
         }while(!WIFEXITED(status) && !WIFSIGNALED(status));
     }
     free(executable_path);
