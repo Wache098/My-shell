@@ -2,25 +2,28 @@
 
 void loop(void){
     char *line;
-    char **args;
+    /*char **args;*/
     char **commands;
     int status = 1;
     int last_status = 1;
     Alias *alias_list = NULL;
+    size_t i, j;
 
     while(status){
         printf("$ ");
 
         line = get_line();
-        args = parse_line(line);
+        /*args = parse_line(line);*/
         commands = parse_commands(line);
-        status = execute_command(line);
 
-        for(size_t i = 0; commands[i] != NULL; i++ ){
+        /*status = execute_command(line);*/
+        
+        for(i = 0; commands[i] != NULL; i++ ){
             char **args = parse_line(commands[i]);
 
             /*Variable replacement in each arg*/
-            for(size_t j = 0; args[i] != NULL; j++ ){
+            
+            for(j = 0; args[i] != NULL; j++ ){
                 char *new_arg = replace_vars(args[j], last_status);
                 free(args[j]);
                 args[j] = new_arg;
@@ -29,12 +32,12 @@ void loop(void){
             /*Handling of alias built-in commands*/
             if(strcmp(args[0], "alias") == 0){
                 if(!args[1]){
-                    printf_alias(alias_list, NULL);
+                    print_alias(alias_list, NULL);
                 }else{
                     char *name = strtok(args[1], "=");
                     char *value = strtok(NULL, "=");
                     if(value){
-                        add_to_aliases(alias_list, name, value);
+                        add_alias(&alias_list, name, value);
                     }else{
                         print_alias(alias_list, name);
                     }
