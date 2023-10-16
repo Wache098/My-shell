@@ -13,7 +13,7 @@ void loop(void){
 
         line = get_line();
         args = parse_line(line);
-        commands = parse_line(line);
+        commands = parse_commands(line);
         status = execute_command(line);
 
         for(size_t i = 0; commands[i] != NULL; i++ ){
