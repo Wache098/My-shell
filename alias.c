@@ -15,8 +15,8 @@ void add_alias(Alias **alias_list, const char *name, const char *value){
 
 void print_alias(const Alias *alias_list, const char *name){
 
-    const Alias *alias = alias_list;
-    for(alias_list; alias; alias = alias->next){
+    const Alias *alias;
+    for(alias = alias_list; alias; alias = alias->next){
         if(!name || strcmp(name, alias->name) == 0 ){
             printf("%s='%s'\n", alias->name, alias->value);
             if(name){
