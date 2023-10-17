@@ -36,6 +36,21 @@ if (name)
 {
 break;
 }
+<<<<<<< HEAD
+=======
+
+void print_alias(const Alias *alias_list, const char *name){
+
+    const Alias *alias;
+    for(alias = alias_list; alias; alias = alias->next){
+        if(!name || strcmp(name, alias->name) == 0 ){
+            printf("%s='%s'\n", alias->name, alias->value);
+            if(name){
+                break;
+            }
+        }
+    }
+>>>>>>> e10cca02881f6ae242eebfe2f273f7ac19167efe
 }
 }
 }
@@ -45,6 +60,7 @@ break;
  * @alias_list:list of aliases
  */
 
+<<<<<<< HEAD
 void free_aliases(Alias *alias_list)
 {
 while (alias_list)
@@ -55,4 +71,14 @@ free(temp->name);
 free(temp->value);
 free(temp);
 }
+=======
+void free_aliases(Alias *alias_list){
+    while(alias_list){
+        Alias *temp = alias_list;
+        alias_list = alias_list->next;
+        free(temp->name);
+        free(temp->value);
+        free(temp);
+    }
+>>>>>>> e10cca02881f6ae242eebfe2f273f7ac19167efe
 }

@@ -1,7 +1,6 @@
-# Simple_shell
+# Simple Shell Project
 
-# Simple Shell Project :
-by Joseph Musyoki and Mary Wachera for ALX month 2.
+by [Joseph Musyoki](https://github.com/Musyoki-Wambua?tab=repositories) and [Mary Wachera](https://github.com/Wache098?tab=repositories) for ALX month 2.
 
 ## Introduction
 
@@ -29,12 +28,14 @@ To use the simple shell, compile the source code and run the executable. You can
 ## Built-in Commands
 
 The shell supports the following built-in commands:
+
 - `exit`: Exit the shell.
 - `env`: Print the current environment variables.
 
 ## Advanced Features
 
 The project includes advanced features such as:
+
 - Custom implementation of the `getline` function.
 - Custom parsing of commands (no `strtok` used).
 - Handle arguments for the built-in `exit` command.
@@ -53,4 +54,3 @@ To compile the shell, use the following GCC command:
 
 ```bash
 gcc -Wall -Werror -Wextra -pedantic -std=gnu89 *.c -o simple_shell
-

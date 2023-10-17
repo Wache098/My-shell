@@ -2,6 +2,13 @@
 
 int execute_command(char **args){
 
+    /**
+     * execute_command - create a new process
+     * @args: array of strings that contains the command and its flags
+     *
+     * Return: 1 if success, 0 otherwise.
+    */
+
     pid_t pid;
     int status;
     char *executable_path;
@@ -91,6 +98,7 @@ int execute_command(char **args){
         fprintf(stderr, "simple_shell: %s: command not found\n", args[0]);
         return 1;
     }
+    
 
     pid = fork(); /*create child process */
 

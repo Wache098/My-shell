@@ -2,7 +2,7 @@
 
 void loop(void){
     char *line;
-    /*char **args;*/
+    char **args;
     char **commands;
     int status = 1;
     int last_status = 1;
@@ -13,10 +13,10 @@ void loop(void){
         printf("$ ");
 
         line = get_line();
-        /*args = parse_line(line);*/
+        args = parse_line(line); /* tokenize line */
         commands = parse_commands(line);
 
-        /*status = execute_command(line);*/
+        status = execute_command(args);
         
         for(i = 0; commands[i] != NULL; i++ ){
             char **args = parse_line(commands[i]);
