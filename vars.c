@@ -1,4 +1,5 @@
 #include "shell.h"
+#include <stdio.h>
 
 char *replace_vars(char *arg, int last_status){
     char *var;
