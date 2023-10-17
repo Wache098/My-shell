@@ -5,8 +5,6 @@ char **parse_line(char *line) {
     char **tokens = malloc(bufsize * sizeof(char*));
     char *token, *saveptr;
     char *comment_pos;
-        int i;
-
 
     if (!tokens) {
         fprintf(stderr, "simple_shell: allocation error\n");
@@ -39,7 +37,8 @@ char **parse_line(char *line) {
     }
     tokens[position] = NULL;
     /**
-     *   for (i = 0; tokens[i] != NULL; i++) {
+     * int i;  
+     * for (i = 0; tokens[i] != NULL; i++) {
         printf("token[%d]: %s\n", i, tokens[i]);
     }
     return tokens;
