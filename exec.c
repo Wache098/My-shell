@@ -95,7 +95,7 @@ int execute_command(char **args){
 
     executable_path = find_executable(args[0]);
     if (executable_path == NULL) {
-        fprintf(stderr, "simple_shell: %s: command not found\n", args[0]);
+        fprintf(stderr, "ERROR: %s: command not found\n", args[0]);
         return 1;
     }
     

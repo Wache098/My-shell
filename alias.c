@@ -27,7 +27,7 @@ void print_alias(const Alias *alias_list, const char *name){
 }
 
 void free_aliases(Alias *alias_list){
-    while(alias_list){
+    while(alias_list){ 
         Alias *temp = alias_list;
         alias_list = alias_list->next;
         free(temp->name);

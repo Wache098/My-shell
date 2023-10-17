@@ -18,10 +18,9 @@ char *find_executable(char *cmd){
             free(path);
             return(executable);
         }
-        free(executable);
         dir = strtok(NULL, ":");
+        free(executable);
     }
     free(path);
     return NULL;
-
 }
