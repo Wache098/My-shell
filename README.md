@@ -1,7 +1,7 @@
 # Simple_shell
 
 # Simple Shell Project :
-by Joseph Musyoki and Mary Wachera for ALX month 2.
+by [Joseph Musyoki](https://github.com/Musyoki-Wambua?tab=repositories) and [Mary Wachera](https://github.com/Wache098?tab=repositories) for ALX month 2.
 
 ## Introduction
 
