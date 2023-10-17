@@ -73,7 +73,7 @@ free(temp);
 }
 =======
 void free_aliases(Alias *alias_list){
-    while(alias_list){
+    while(alias_list){ 
         Alias *temp = alias_list;
         alias_list = alias_list->next;
         free(temp->name);

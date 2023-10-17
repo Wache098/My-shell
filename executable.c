@@ -24,6 +24,7 @@ strcpy(executable, dir);
 strcat(executable, "/");
 strcat(executable, cmd);
 
+<<<<<<< HEAD
 if (stat(executable, &st) == 0 && (st.st_mode & S_IXUSR))
 {
 free(path);
@@ -36,3 +37,15 @@ free(path);
 return (NULL);
 
 }
+=======
+         if (stat(executable, &st) == 0 && (st.st_mode & S_IXUSR)) {
+            free(path);
+            return(executable);
+        }
+        dir = strtok(NULL, ":");
+        free(executable);
+    }
+    free(path);
+    return NULL;
+}
+>>>>>>> 929478f3a6b111050a712f61afa21d434339274d

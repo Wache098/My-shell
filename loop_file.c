@@ -12,7 +12,7 @@ void loop_file(FILE *fp){
         if(line[nread -1] == '\n'){
             line[--nread] = '\0'; /*remove the newline character at end of string*/
         }
-        commands= parse_line(line);
+        commands= parse_commands(line);
 
         for(i = 0; commands[i] != NULL && status; i++){
             char **args = parse_line(commands[i]);

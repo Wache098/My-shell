@@ -20,7 +20,7 @@ char* read_line(void){
 			write(STDOUT_FILENO, "\n", 1);/*Add a new line after input*/
             free(line);
 		/*exit(NULL, line);*/
-        return NULL;
+        /*return NULL;*/
 	}
     return(line);
     /*free(line);*/
